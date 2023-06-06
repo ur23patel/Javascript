@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>student calculate</title>
+	<style>
+		body {
+		  font-family: Arial, sans-serif;
+		  margin: 0;
+		  padding: 0;
+		}
+		table {
+		  width: 100%;
+		  border-collapse:collapse;
+		}
+		h1 {
+		  text-align: center;
+		}
+		
+		th, td {
+		  padding: 15px;
+		  text-align:start;
+		  border-bottom: 2px solid whitesmoke;
+		  
+		}
+		th {
+		  background-color:gray;
+		}
+		
+	  </style>
+</head>
+<body>
+	<h1><center>Student grade</center></h1>
+	<table>
+		<tr>
+		  <th>Subject</th>
+		  <th>Marks</th>
+		</tr>
+		<tr>
+		  <td>Mathematics</td>
+		  <td><input type="text" class="form-control" id="chemistry"></td>
+		</tr>
+		<tr>
+		  <td>English</td>
+		  <td><input type="text" class="form-control" id="science"></td>
+		</tr>
+		<tr>
+		  <td>Science</td>
+		  <td><input type="text" class="form-control" id="maths"></td>
+		</tr>
+		<tr>
+			<td>Science</td>
+			<td><input type="text" class="form-control" id="physics"></td>
+		  </tr>
+	  </table>
+	
+			<!-- option for taking the input -->
+		
+            <button onclick="calculateTotal()">Calculate</button>
+			
+        
+	
+
+	<!--adding internal javascript file-->
+	<script>
+		// Function for calculating grades
+
+      function calculateTotal() {
+
+// Getting input from user into height variable.
+let chemistry = parseFloat(document.getElementById("chemistry").value);
+let science = parseFloat(document.getElementById("science").value);
+let maths =parseFloat(document.getElementById("maths").value);
+let physics = parseFloat(document.getElementById("physics").value);
+ 
+let totalgrades = chemistry + science + maths + physics;
+
+
+// Checking the condition for the providing the
+// grade to student based on percentage
+let percentage = (totalgrades / 400) * 100;
+if (percentage >= 100) {
+    document.write("Invalid Value")
+}else if (percentage <= 100 && percentage >= 80) {
+	document.write("Excellent")
+} else if (percentage <= 79 && percentage >= 70) {
+	document.write("distriction")
+} else if (percentage <= 69 && percentage >= 59) {
+	document.write("First class")
+}else if (percentage <= 58 && percentage >= 35) {
+	document.write("Pass class")
+}else if (percentage <= 0) { 
+    document.write("Invalid Value") 
+} else {
+	document.write("Fail") 
+}
+
+     document.getElementById('total').innerHTML = 'Total Grades: ' + totalgrades;
+      
+}
+
+	</script>
+</body>
+</html>
