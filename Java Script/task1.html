@@ -3,11 +3,21 @@
 <head>
 	<title>student calculate</title>
 	<style>
+
+  	.showdata{
+       height: 100px;
+       width: 200px;
+       border: 3px solid;
+       margin: auto;
+    }
+	
 		body {
-		  font-family: Arial, sans-serif;
 		  margin: 0;
 		  padding: 0;
-		}
+		  background-color:white;
+		  font-family: Arial, sans-serif;
+		  }
+		
 		table {
 		  width: 100%;
 		  border-collapse:collapse;
@@ -17,48 +27,87 @@
 		}
 		
 		th, td {
-		  padding: 15px;
+		 font-size:large;
+		  padding: 18px;
 		  text-align:start;
 		  border-bottom: 2px solid whitesmoke;
 		  
 		}
 		th {
-		  background-color:gray;
+		  background-color:rgb(205, 175, 232);
 		}
+
+	button {
+	display: block;
+	  font-size: large;
+      padding: 10px 60px;
+	  margin-top: 20px;
+      margin: auto;
+	  background-color:rgb(205, 175, 232);
+      
+    }
+	.row {
+      width: 100%;
+      margin: auto;
+    }
+	#total,
+    #percentage {
+      font-weight: bold;
+      text-align: center;
+      margin-top: 15px;
+      color:blue;
+
+
+    }
+
+    #result {
+
+      font-weight: bold;
+      font-size: 30px;
+      text-align: center;
+      margin-top: 20px;
+      color: red;
+     
+    }
 		
 	  </style>
 </head>
 <body>
-	<h1><center>Student grade</center></h1>
+	<section>
+		<div class="row">
+	    <h1>Student Marksheet</h1>
+	<!-- option for taking the input -->
 	<table>
 		<tr>
 		  <th>Subject</th>
 		  <th>Marks</th>
 		</tr>
 		<tr>
-		  <td>Mathematics</td>
+		  <td>Chemistry</td>
 		  <td><input type="text" class="form-control" id="chemistry"></td>
 		</tr>
 		<tr>
-		  <td>English</td>
+		  <td>Science</td>
 		  <td><input type="text" class="form-control" id="science"></td>
 		</tr>
 		<tr>
-		  <td>Science</td>
+		  <td>Maths</td>
 		  <td><input type="text" class="form-control" id="maths"></td>
 		</tr>
 		<tr>
-			<td>Science</td>
+			<td>Physics</td>
 			<td><input type="text" class="form-control" id="physics"></td>
 		  </tr>
 	  </table>
 	
-			<!-- option for taking the input -->
-		
-            <button onclick="calculateTotal()">Calculate</button>
+		 <button onclick="calculateTotal()">Result</button>
 			
-        
-	
+          <!-- <div class="showdata"> -->
+			<div id="total"></div>
+			<div id="percentage"></div>
+			<div id="result"></div>
+	</div>
+	</section>
 
 	<!--adding internal javascript file-->
 	<script>
@@ -72,29 +121,27 @@ let science = parseFloat(document.getElementById("science").value);
 let maths =parseFloat(document.getElementById("maths").value);
 let physics = parseFloat(document.getElementById("physics").value);
  
-let totalgrades = chemistry + science + maths + physics;
+let totalGrades = chemistry + science + maths + physics;
+let percentage = (totalGrades / 400) * 100;
+let result = '';
 
+if (percentage >= 100)
+ { result='Invalid Value'}
+else if (percentage <= 100 && percentage >= 80)
+ {result='Excellent'}
+ else if (percentage <= 79 && percentage >= 70)
+ {result='distriction'} 
+else if (percentage <= 69 && percentage >= 59)
+{result='First class'}
+else if (percentage <= 58 && percentage >= 35)
+{result='Pass class'}
+else if (percentage <= 0)
+{  result='Invalid Value'} 
+else {result='Fail'}
 
-// Checking the condition for the providing the
-// grade to student based on percentage
-let percentage = (totalgrades / 400) * 100;
-if (percentage >= 100) {
-    document.write("Invalid Value")
-}else if (percentage <= 100 && percentage >= 80) {
-	document.write("Excellent")
-} else if (percentage <= 79 && percentage >= 70) {
-	document.write("distriction")
-} else if (percentage <= 69 && percentage >= 59) {
-	document.write("First class")
-}else if (percentage <= 58 && percentage >= 35) {
-	document.write("Pass class")
-}else if (percentage <= 0) { 
-    document.write("Invalid Value") 
-} else {
-	document.write("Fail") 
-}
-
-     document.getElementById('total').innerHTML = 'Total Grades: ' + totalgrades;
+	  document.getElementById('total').innerHTML = 'Total Marks: ' + totalGrades;
+      document.getElementById('percentage').innerHTML = 'Percentage: ' + percentage + '%';
+      document.getElementById('result').innerHTML = 'Result: ' + result;
       
 }
 
